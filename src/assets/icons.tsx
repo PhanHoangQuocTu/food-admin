@@ -34,6 +34,7 @@ import google from '@/assets/svg/google.svg';
 import insecurity from '@/assets/svg/insecurity.svg';
 import link from '@/assets/svg/link.svg';
 import location from '@/assets/svg/location.svg';
+import logo from '@/assets/svg/logo.svg';
 import menu from '@/assets/svg/menu.svg';
 import message from '@/assets/svg/message.svg';
 import metamask from '@/assets/svg/metamask.svg';
@@ -108,6 +109,7 @@ const IconList = {
   checkCircleXs,
   chevronDown: ChevronDown,
   chevronUp: ChevronUp,
+  logo,
 };
 
 export const Icons = IconList as Record<keyof typeof IconList, Icon>;

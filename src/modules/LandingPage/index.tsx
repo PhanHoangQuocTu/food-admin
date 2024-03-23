@@ -1,15 +1,10 @@
 import React from 'react';
 
+import TitlePageLayout from '@/components/TitlePageLayout';
 import type { NextPageWithLayout } from '@/types';
 
-import Form from './components/Form';
-
 const LandingPage: NextPageWithLayout = () => {
-  return (
-    <>
-      <Form />
-    </>
-  );
+  return <TitlePageLayout title="Dashboard"></TitlePageLayout>;
 };
 
 export default LandingPage;

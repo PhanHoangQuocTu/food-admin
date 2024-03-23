@@ -1,15 +1,19 @@
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { Icons } from '@/assets/icons';
-import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { HStack } from '@/components/ui/Utilities';
+import { cn } from '@/lib/utils';
 import { ROUTE } from '@/types';
+
+import { SIDEBAR_DATA } from './const';
 
 const Sidebar = () => {
   const [opened, { toggle }] = useDisclosure(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -23,10 +27,24 @@ const Sidebar = () => {
           <SheetHeader>
             <SheetTitle>
               <Link href={ROUTE.HOME}>
-                <Logo />
+                <Icons.logo />
               </Link>
             </SheetTitle>
-            <SheetDescription>Make changes to your profile here.</SheetDescription>
+            <SheetDescription>
+              <div className="flex flex-col gap-2">
+                {SIDEBAR_DATA?.map((item, index) => (
+                  <Link
+                    className={cn('text-2xl font-semibold text-black cursor-pointer hover:opacity-50', {
+                      'text-primary hover:opacity-100 cursor-default': item.route === pathname,
+                    })}
+                    key={index}
+                    href={item.route}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </SheetDescription>
           </SheetHeader>
         </SheetContent>
       </Sheet>

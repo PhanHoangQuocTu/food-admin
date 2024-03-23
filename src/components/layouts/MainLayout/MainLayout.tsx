@@ -13,9 +13,11 @@ interface Props {
 const MainLayout: FCC<Props> = ({ children }) => {
   return (
     <div className="overflow-clip">
-      <Header />
-      <main className="min-h-screen">{children}</main>
-      <Footer />
+      <div>
+        <Header />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 };

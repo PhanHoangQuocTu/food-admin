@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import React from 'react';
 
-import Logo from '@/components/Logo';
-import { useMobile } from '@/hooks/breakpoint';
+import { Icons } from '@/assets/icons';
+import { Button } from '@/components/ui/button';
+import { HStack } from '@/components/ui/Utilities';
 import { cn } from '@/lib/utils';
 import { ROUTE } from '@/types';
 
-import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
 const Header = () => {
-  const isMobile = useMobile();
-
   return (
     <header
       className={cn(
@@ -19,10 +17,17 @@ const Header = () => {
       )}
     >
       <div className={'container flex items-center justify-between'}>
-        <Link href={ROUTE.HOME}>
-          <Logo />
-        </Link>
-        <div className="">{isMobile ? <Sidebar /> : <Navbar />}</div>
+        <HStack spacing={20}>
+          <Sidebar />
+
+          <Link href={ROUTE.HOME}>
+            <Icons.logo />
+          </Link>
+        </HStack>
+
+        <Button>
+          <Link href={ROUTE.SIGN_IN}>Sign In</Link>
+        </Button>
       </div>
     </header>
   );
