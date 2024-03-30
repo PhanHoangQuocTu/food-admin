@@ -25,13 +25,15 @@ export interface IRegisterResponse extends ILoginResponse {}
 export interface IRefreshTokenResponse extends ILoginResponse {}
 
 export interface IUser {
-  id: string;
-  uuid: string;
+  address: string;
+  createdAt: string;
   email: string;
   firstName: string;
+  id: number;
   lastName: string;
-  company: string;
-  emailVerifiedAt: string;
+  phoneNumber: string;
+  roles: string[];
+  updatedAt: string;
 }
 export interface IForgotPassword {
   email: string;

@@ -114,3 +114,8 @@ export const validateCharacterSpecial = (text: string) => {
 export function isPastDate(date: Date) {
   return differenceInCalendarDays(date, new Date()) < 0;
 }
+
+export const isAdmin = (roles: string[]) => {
+  if (roles.includes('admin')) return true;
+  return false;
+};

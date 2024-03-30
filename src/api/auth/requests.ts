@@ -16,11 +16,11 @@ import type {
   IUser,
 } from './types';
 
-export const loginRequest = async (params: ILoginParams): Promise<ILoginResponse> => {
+export const loginRequest = async (body: ILoginParams): Promise<ILoginResponse> => {
   const { data } = await request({
-    url: '/authentication/log-in',
+    url: '/api/v1/auth/sign-in',
     method: 'POST',
-    data: params,
+    data: body,
   });
 
   return data;

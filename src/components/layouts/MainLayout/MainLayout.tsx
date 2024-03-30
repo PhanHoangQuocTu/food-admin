@@ -1,7 +1,9 @@
+import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import type { FCC } from '@/types';
+import { useAuth } from '@/hooks/useAuth';
+import { type FCC, ROUTE } from '@/types';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -11,6 +13,15 @@ interface Props {
 }
 
 const MainLayout: FCC<Props> = ({ children }) => {
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace(ROUTE.SIGN_IN);
+    }
+  }, [isLoggedIn, router]);
+
   return (
     <div className="overflow-clip">
       <div>

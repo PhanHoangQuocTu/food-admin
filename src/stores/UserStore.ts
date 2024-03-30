@@ -5,10 +5,11 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import type { ILoginResponse, IUser } from '@/api/auth';
 
 export interface IMeQueryStore {
-  user: IUser;
+  user: IUser | null;
   accessToken: string;
   refreshToken?: string;
   setStore: (data: ILoginResponse) => void;
+  setUser: (data: IUser) => void;
   setAccessToken: (data: string) => void;
   logout: () => void;
 }
@@ -18,10 +19,11 @@ const useBaseUserStore = create<IMeQueryStore>()(
     (set) => ({
       accessToken: '',
       refreshToken: undefined,
-      user: {} as IUser,
+      user: null,
       setStore: (data) => set((_) => data),
+      setUser: (data) => set((state) => ({ ...state, user: data })),
       setAccessToken: (data) => set((state) => ({ ...state, accessToken: data })),
-      logout: () => set(() => ({ accessToken: '', refreshToken: undefined, user: {} as IUser })),
+      logout: () => set(() => ({ accessToken: '', refreshToken: undefined, user: null })),
     }),
     {
       name: 'user-store',
